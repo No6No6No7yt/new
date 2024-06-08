@@ -1,4 +1,4 @@
-local LN_module = {}
+local nurysium_module = {}
 
 local Players = game:GetService("Players")
 
@@ -7,11 +7,11 @@ local Services = {
     game:GetService('SocialService')
 }
 
-function LN_module.isAlive(Entity)
+function nurysium_module.isAlive(Entity)
     return Entity.Character and workspace.Alive:FindFirstChild(Entity.Name) and workspace.Alive:FindFirstChild(Entity.Name).Humanoid.Health > 0
 end
 
-function LN_module.getBall()
+function nurysium_module.getBall()
     for index, ball in workspace:WaitForChild("Balls"):GetChildren() do
         if ball:IsA("BasePart") and ball:GetAttribute("realBall") then
             return ball
@@ -19,4 +19,4 @@ function LN_module.getBall()
     end
 end
 
-return LN_module;
+return nurysium_module;
